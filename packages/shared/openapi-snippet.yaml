@@ -1,0 +1,14 @@
+openapi: 3.0.3
+info:
+  title: EncontreAqui API
+  version: 0.1.0
+paths:
+  /search/professionals:
+    get:
+      summary: Busca profissionais por proximidade
+  /ads/serve:
+    get:
+      summary: Serve anúncio por placement/targeting
+  /jobs:
+    post:
+      summary: Criar solicitação/OS
