@@ -1,0 +1,35 @@
+version: '3.9'
+services:
+  postgres:
+    image: postgis/postgis:16-3.4
+    environment:
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: app
+      POSTGRES_DB: encontreaqui
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"
+
+  api:
+    build: ./services/api
+    env_file:
+      - ./services/api/.env.example
+    depends_on:
+      - postgres
+      - redis
+    ports:
+      - "8000:8000"
+
+  web-admin:
+    build: ./apps/web-admin
+    ports:
+      - "3000:3000"
+
+  web-advertiser:
+    build: ./apps/web-advertiser
+    ports:
+      - "3001:3000"
